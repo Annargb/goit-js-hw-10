@@ -1,5 +1,5 @@
-import './css/styles.css';
-import { fetchBreeds, fetchCatByBreed } from './js/cat-api';
+// import './css/styles.css';
+import { fetchBreeds, fetchCatByBreed } from './cat-api';
 
 const selectEl = document.querySelector('.breed-select');
 const catContainer = document.querySelector('.cat-info');
