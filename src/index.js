@@ -1,5 +1,4 @@
-// import SlimSelect from 'slim-select';
-import './css/styles.css';
+// import './css/styles.css';
 import { fetchBreeds, fetchCatByBreed } from './js/cat-api';
 
 const selectEl = document.querySelector('.breed-select');
@@ -9,15 +8,6 @@ const error = document.querySelector('.error');
 
 loader.classList.add('utilites-js');
 error.classList.add('utilites-js');
-
-// const mySelect = new SlimSelect({
-//   select: selectEl,
-//   allowDeselect: true, // Allow deselecting options
-//   placeholder: 'Select an option', // Placeholder text
-//   searchPlaceholder: 'Search...', // Search input placeholder text
-//   searchHighlight: true, // Highlight search matches
-//   showContent: 'auto', // Show selected options in the dropdown
-// });
 
 fetchBreeds()
   .then(cats => renderSelectOption(cats))
@@ -32,10 +22,6 @@ function renderSelectOption(cats) {
     .map(({ id, name }) => `<option value="${id}">${name}</option>`)
     .join('');
 
-  // const markup = cats.map(
-  //   ({ id, name }) => `{ text: '${name}', value: '${id}' }`
-  // );
-  // mySelect.setData(markup);
   selectEl.insertAdjacentHTML('beforeend', markup);
 }
 
