@@ -1,5 +1,5 @@
 // import SlimSelect from 'slim-select';
-
+import './css/styles.css';
 import { fetchBreeds, fetchCatByBreed } from './js/cat-api';
 
 const selectEl = document.querySelector('.breed-select');
