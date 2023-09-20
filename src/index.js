@@ -1,4 +1,4 @@
-// import './css/styles.css';
+import './css/styles.css';
 import { fetchBreeds, fetchCatByBreed } from './js/cat-api';
 
 const selectEl = document.querySelector('.breed-select');
