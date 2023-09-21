@@ -1,4 +1,3 @@
-// import './css/styles.css';
 import { fetchBreeds, fetchCatByBreed } from './cat-api';
 
 const selectEl = document.querySelector('.breed-select');
@@ -6,8 +5,7 @@ const catContainer = document.querySelector('.cat-info');
 const loader = document.querySelector('.loader');
 const error = document.querySelector('.error');
 
-loader.classList.add('utilites-js');
-error.classList.add('utilites-js');
+selectEl.hidden = true;
 
 fetchBreeds()
   .then(cats => renderSelectOption(cats))
@@ -23,6 +21,8 @@ function renderSelectOption(cats) {
     .join('');
 
   selectEl.insertAdjacentHTML('beforeend', markup);
+  selectEl.hidden = false;
+  loader.classList.add('utilites-js');
 }
 
 function renderCatContainer(cat) {
@@ -52,15 +52,20 @@ selectEl.addEventListener('change', onSelectChange);
 function onSelectChange(event) {
   loader.classList.remove('utilites-js');
   catContainer.classList.add('utilites-js');
-  error.classList.add('utilites-js');
+  error.hidden = true;
 
   const id = event.target.value;
 
   fetchCatByBreed(id)
-    .then(cat => renderCatContainer(cat))
+    .then(cat => {
+      if (!cat.length) {
+        throw new Error();
+      }
+      return renderCatContainer(cat);
+    })
     .catch(errorSystem => {
       loader.classList.add('utilites-js');
-      error.classList.remove('utilites-js');
+      error.hidden = false;
       console.log(errorSystem);
     });
 }
